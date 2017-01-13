@@ -1,6 +1,11 @@
 IMAGE PROCESSING
 
-PYTHON
+DESCRIPTION OF THE PROJECT:::
+Video was captured by an overhead camera. The video was made to display in a windiw in Python where it could be process as explained below. 
+The necessary control signal was then given to the serial port through the PySerial module which sent the data to the Arduino IDE. The Arduino board was connected on one the USB ports.
+The Arduino IDE directs accordingly the motor to be run to make the bot translate the bot in either direction to catch the ball.
+
+========================PYTHON================================
 The project was carried as following: 
 (Refer to the headings in the python code indicated in capital letters. Also, the attached image was the setup of the project.)
 Importing libraries:::
@@ -17,7 +22,7 @@ Color Detection and Contour making:::
 •	Drawing Contours and centroid:  The findcontour() function makes a numpy array of all the contours of all the white objects of the mask window. The contour approximation method employed here is ‘simple’. It implies that not all points are stored; rather the minimum number of points needed to draw the contour are stored, e.g. 4 for rectangle, 2 for a line, etc. It saves memory. A variable ‘i’ is initiated which corresponds to the number of white objects found.  Thus to eliminate noise, a particular area range is selected viz. determined empirically. Thus, we finally have the required colored patch.  The drawcontour() function draws a contour, here-  in the window ‘frame’; at the points found by findcontour () function; of green color; and of thickness 2 pixels. The centroid is calculated using the moments’ formula. Once found, a circle is drawn about to locate it.
 •	Translation of the bot to catch the ball: The centroids of the ball and the bot are compared. The signal right, left or nothing were sent to the serial port accordingly which was then read by Arduino. The code written in Arduino IDE was to simply direct which pins to be high or low. The pins were connecting to the L293D motor driver.
 
-ARDUINO 
+=========================================ARDUINO =========================
 •	Two files have been attached namely Arduino Code first and Arduino Code corrected.
 •	The first one works just fine too. But we observed that the speed of the motors was really less as compared when plugged to a battery supply. The motor drivers were fine too. The reduction of speed was only observed when the motors were run according to image processing.
 •	We then observed that the camera from which the video was being captured had a frame rate of 100fps. Whereas the Baud rate set for PySerial and Arduino was 9600. This meant that out of 9600 times a second the date was sent by PySerial to Arduino, only 100 of them had the actual information. It therefore unknowingly created PWM with a DC average 1/96th time of the maximum DC output. 
