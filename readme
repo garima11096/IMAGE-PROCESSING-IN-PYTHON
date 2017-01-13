@@ -23,9 +23,8 @@ Color Detection and Contour making:::
 •	Translation of the bot to catch the ball: The centroids of the ball and the bot are compared. The signal right, left or nothing were sent to the serial port accordingly which was then read by Arduino. The code written in Arduino IDE was to simply direct which pins to be high or low. The pins were connecting to the L293D motor driver.
 
 =========================================ARDUINO =========================
-•	Two files have been attached namely Arduino Code first and Arduino Code corrected.
-•	The first one works just fine too. But we observed that the speed of the motors was really less as compared when plugged to a battery supply. The motor drivers were fine too. The reduction of speed was only observed when the motors were run according to image processing.
-•	We then observed that the camera from which the video was being captured had a frame rate of 100fps. Whereas the Baud rate set for PySerial and Arduino was 9600. This meant that out of 9600 times a second the date was sent by PySerial to Arduino, only 100 of them had the actual information. It therefore unknowingly created PWM with a DC average 1/96th time of the maximum DC output. 
-•	We therefore found out that since we had used ‘if loop’ in the Arduino code, the relevant signal was only passed if there was an incoming byte from PySerial. So, we inserted a nested ‘while loop’ in the ‘if loop’. And things got fine! 
+
+A change has been done in the Arduino code as shown in the commit history of the file. The reason of correction has been explained in the description of the commit
+
 
 
