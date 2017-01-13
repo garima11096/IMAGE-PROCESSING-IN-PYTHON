@@ -24,25 +24,32 @@ void loop()
     Serial.println(incomingByte);
   if(incomingByte == right)
     {
-      
+      while (incomingByte == right)
+      {
       digitalWrite(3,HIGH);
       digitalWrite(6,LOW);
       delay(20);
+      }
     }
     else
     if(incomingByte == left)
     {
-      
+      while (incomingByte == right)
+      {
       digitalWrite(6,HIGH);
       digitalWrite(3,LOW);
       delay(20);
+      }
     }
     else
      (incomingByte == nothing);
-    {
+    {  
+      while (incomingByte == right)
+      {
       digitalWrite(6,LOW);
       digitalWrite(3,LOW);
       delay(20);
+      }
     }
     }
 
